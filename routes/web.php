@@ -18,4 +18,6 @@ Route::get('/', function () {
 });
 Route::get('index',[StudentController::class,'index'])->name('index');
 Route::post('store',[StudentController::class,'storeStudent'])->name('store');
+Route::get('editStudent/{id}',[StudentController::class,'editStudent'])->name('editStudent');
 Route::get('deleteStudent',[StudentController::class,'deleteStudent'])->name('deleteStudent');
+Route::post('updateStudent',[StudentController::class,'updateStudent'])->name('updateStudent');

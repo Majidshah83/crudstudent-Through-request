@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
-use App\Http\Requests\Request;
 use App\Http\Requests\StudentRequest;
+
 use App\Models\Student;
 class StudentController extends Controller
 {
@@ -27,7 +28,14 @@ class StudentController extends Controller
         }
 
     }
+  public function editStudent($id)
+  {
+    $studentget=Student::where('id',$id)->first();
 
+    return view('student.editStudent')->with('studentget',$studentget);
+
+
+  }
     public function deleteStudent($id)
     {
 
@@ -39,5 +47,19 @@ class StudentController extends Controller
         else{
              return redirect('index')->with('message','Oops! Somethings went wrong, please try again later.');
         }
-    }
+
+   }
+   public function updateStudent(Request $request)
+   {
+       $student=Student::where('id',$request->id)->first();
+       if($student)
+       {
+         $student->firstname=$request->firstname;
+          $student->lastname=$request->lastname;
+          $student->age=$request->age;
+          $student->update();
+
+        return redirect('index')->with('message', 'You have successfully Updated Student Record!');
+       }
+   }
 }

@@ -32,7 +32,7 @@
             <td>{{$student->lastname}}</td>
             <td>{{$student->age}}</td>
 
-            <td> <a class="btn btn-primary" href="">Edit</a> <a class="btn btn-danger" href="{{route('deleteStudent',$student->id)}}">Delete</a> </td>
+            <td> <a  class="btn btn-primary" href="{{route('editStudent',$student->id)}}">Edit</a> <a class="btn btn-danger" href="{{route('deleteStudent',$student->id)}}">Delete</a> </td>
 
         </tr>
         @endforeach
@@ -41,7 +41,7 @@
 @endsection
 
 
-<!-- Modal -->
+<!--Insert  Modal -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -87,6 +87,9 @@
   </div>
 
 </div>
+
+
+
 
 
 <script>

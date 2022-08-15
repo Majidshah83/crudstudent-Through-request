@@ -38,6 +38,10 @@ class Student extends Model
     return $create_student;
   }
 
+
+  
+
+
   public static function deletestudent($id)
   {
     $student=self::where('id',$id)->first();
