@@ -23,10 +23,10 @@ class Student extends Model
     ];
   }
 
-
   public static function storeData($request)
   {
     $common_fileds=self::get_common_fileds($request);
+
     $create_student=self::firstOrNew($common_fileds);
 
     if(!empty($create_student))
@@ -38,8 +38,15 @@ class Student extends Model
     return $create_student;
   }
 
+     public static function updateData($request, $id)
+   {
+        $common_fields = self::get_common_fileds($request);
+        $student = self::where('id', $id)->first();
+        $student->update($common_fields );
+        return $student;
 
-  
+
+    }
 
 
   public static function deletestudent($id)

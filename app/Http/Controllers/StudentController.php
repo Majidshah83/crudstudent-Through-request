@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
 use App\Http\Requests\StudentRequest;
-
 use App\Models\Student;
 class StudentController extends Controller
 {
@@ -34,8 +32,20 @@ class StudentController extends Controller
 
     return view('student.editStudent')->with('studentget',$studentget);
 
-
   }
+  public function updateStudent(StudentRequest $request)
+    {
+        $student = Student::where('id',$request->id)->first();
+        
+        $updated = Student::updateData($request, $request->id);
+        if($updated){
+           return redirect('index')->with('message', 'You have successfully Updated Student Record!');
+        }else{
+            return redirect('index')->with('message', 'Oops! Somethings went wrong');
+
+        }
+
+    }
     public function deleteStudent($id)
     {
 
@@ -49,17 +59,9 @@ class StudentController extends Controller
         }
 
    }
-   public function updateStudent(Request $request)
-   {
-       $student=Student::where('id',$request->id)->first();
-       if($student)
-       {
-         $student->firstname=$request->firstname;
-          $student->lastname=$request->lastname;
-          $student->age=$request->age;
-          $student->update();
 
-        return redirect('index')->with('message', 'You have successfully Updated Student Record!');
-       }
-   }
+
+
+
+
 }
